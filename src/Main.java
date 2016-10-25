@@ -2,8 +2,7 @@
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		BoardView gui = new BoardView(new BoardController("John", "Steve", 16, 16, PlayerModel.Color.BLACK));
 	}
 
 }
