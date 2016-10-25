@@ -3,14 +3,25 @@ public class BoardModel {
 	private DiscModel[][] board;
 	private PlayerModel player1;
 	private PlayerModel player2;
+	private int boardWidth, boardHeight;
 	
 	public BoardModel(DiscModel[][] board, PlayerModel player1, PlayerModel player2){
 		this.board = board;
 		this.player1 = player1;
 		this.player2 = player2;
+		boardHeight = board.length;
+		boardWidth = board[0].length;
 		populateEmptyBoard();
 	}
 	
+	public int getBoardWidth() {
+		return boardWidth;
+	}
+	
+	public int getBoardHeight() {
+		return boardHeight;
+	}
+
 	public DiscModel[][] getBoard(){
 		return this.board;
 	}
