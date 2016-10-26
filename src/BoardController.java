@@ -29,4 +29,8 @@ public class BoardController {
 	public DiscModel[][] getBoard(){
 		return this.boardModel.getBoard();
 	}
+	
+	public BoardModel getBoardModel() {
+		return boardModel;
+	}
 }
