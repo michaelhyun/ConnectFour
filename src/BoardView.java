@@ -30,14 +30,16 @@ public class BoardView extends JFrame{
 
         frame.getContentPane().add(containerPanel);
 		
-		DiscModel[][] board = controller.getBoard();
-		for (int i = 0; i < board[0].length; i++) {
-			for (int j = 0; j < board.length; j++) {
+		DiscModel[][] board = controller.getBoard();	
+		
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
 				System.out.print(board[i][j].getState().name() + " ");
 				buttonPanel.add(new JButton(board[i][j].getState().name()));
 			}
 			System.out.println();
 		}
+		
 		buttonPanel.setPreferredSize(new Dimension(300, 400));
         containerPanel.add(buttonPanel);
 	}
