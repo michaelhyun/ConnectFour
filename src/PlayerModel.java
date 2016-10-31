@@ -1,4 +1,8 @@
 
+/**
+ * @author ravinsardal
+ *
+ */
 public class PlayerModel {
 	public static enum Color{RED, BLACK, EMPTY};
 	private String name;

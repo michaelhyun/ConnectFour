@@ -3,6 +3,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * @author ravinsardal
+ *
+ */
 public class BoardView extends JFrame implements MouseListener {
 	BoardController controller;
 	private int WINDOW_WIDTH, WINDOW_HEIGHT;

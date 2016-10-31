@@ -1,4 +1,8 @@
 
+/**
+ * @author ravinsardal
+ *
+ */
 public class DiscModel {
 	public static enum State{RED, BLACK, EMPTY};
 	private State state;

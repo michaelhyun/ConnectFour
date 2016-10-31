@@ -1,3 +1,7 @@
+/**
+ * @author ravinsardal
+ *
+ */
 public class BoardModel {
 	private DiscModel[][] board;
 	private PlayerModel player1;
