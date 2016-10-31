@@ -8,4 +8,8 @@ public class PlayerModel {
 		this.name = name;
 		this.discColor = discColor;
 	}
+	
+	public Color getDiscColor() {
+		return discColor;
+	}
 }

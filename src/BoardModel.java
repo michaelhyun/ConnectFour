@@ -21,6 +21,12 @@ public class BoardModel {
 	public int getBoardHeight() {
 		return boardHeight;
 	}
+	
+	public void setBoard(DiscModel[][] board, Object o) {
+		if (o instanceof BoardController) {
+			this.board = board;
+		}
+	}
 
 	public DiscModel[][] getBoard() {
 		return this.board;

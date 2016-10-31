@@ -1,5 +1,7 @@
-import java.util.function.IntPredicate;
-
+/**
+ * @author ravinsardal
+ *
+ */
 public class BoardController {
 	BoardView view;
 	BoardModel boardModel;
@@ -7,6 +9,8 @@ public class BoardController {
 	public static enum PlayerTurn {
 		Player1, Player2
 	};
+
+	PlayerTurn turn;
 
 	// PlayerTurn
 
@@ -32,20 +36,86 @@ public class BoardController {
 		boardModel = new BoardModel(new DiscModel[boardHeight][boardWidth],
 				new PlayerModel(player1Name, player1Color), new PlayerModel(
 						player2Name, player2Color));
+		turn = PlayerTurn.Player1;
 	}
 
+	/**
+	 * Responsible for notifying the Board Controller that a point was clicked and updating the model
+	 * 
+	 * @param x
+	 *            x-coordinate of user click
+	 * @param y
+	 *            y-coordinate of user click
+	 * @param windowWidth
+	 *            the width of the swing window frame
+	 * @param windowHeight
+	 *            the height of the swing window frame
+	 * @param discSize
+	 *            the size of the disc
+	 */
 	public void userClickedAtPoint(int x, int y, int windowWidth,
 			int windowHeight, int discSize) {
 		int[] clickIndex = getIndexOfClick(x, y, windowWidth, windowHeight,
 				discSize);
-		// checks if the user has not clicked a circle that is already colored
-		// in
+		DiscModel[][] board = getBoard();
 		if (isValidClick(clickIndex)) {
-			System.out.println("isValid");
+			switch (turn) {
+			case Player1:
+				switch (boardModel.getPlayer1().getDiscColor()) {
+				case RED:
+					board[clickIndex[1]][clickIndex[0]]
+							.setState(DiscModel.State.RED);
+					break;
+				case BLACK:
+					board[clickIndex[1]][clickIndex[0]]
+							.setState(DiscModel.State.BLACK);
+					break;
+				default:
+					break;
+				}
+				boardModel.setBoard(board, this);
+				turn = PlayerTurn.Player2;
+				break;
+			case Player2:
+				switch (boardModel.getPlayer2().getDiscColor()) {
+				case RED:
+					board[clickIndex[1]][clickIndex[0]]
+							.setState(DiscModel.State.RED);
+					break;
+				case BLACK:
+					board[clickIndex[1]][clickIndex[0]]
+							.setState(DiscModel.State.BLACK);
+					break;
+				default:
+					break;
+				}
+				boardModel.setBoard(board, this);
+				turn = PlayerTurn.Player1;
+				break;
+			default:
+				break;
+			}
 		}
 
 	}
 
+	/**
+	 * Responsible for getting the array indices of the appropriate disc in the
+	 * board
+	 * 
+	 * @param x
+	 *            x-coordinate of user click
+	 * @param y
+	 *            y-coordinate of user click
+	 * @param windowWidth
+	 *            the width of the swing window frame
+	 * @param windowHeight
+	 *            the height of the swing window frame
+	 * @param discSize
+	 *            the size of the disc
+	 * @return the indices of the disc in the respective model, returns null if
+	 *         the click is not in a disc
+	 */
 	private int[] getIndexOfClick(int x, int y, int windowWidth,
 			int windowHeight, int discSize) {
 		int clickIndex[] = new int[2];
@@ -67,10 +137,16 @@ public class BoardController {
 		return null;
 	}
 
+	/**
+	 * Responsible for checking whether the click is on an empty space
+	 * 
+	 * @param clickIndex
+	 *            the indices of the disc in the model
+	 * @return the status of the click
+	 */
 	private boolean isValidClick(int[] clickIndex) {
 		if (clickIndex != null) {
-			switch (boardModel.getBoard()[clickIndex[1]][clickIndex[0]]
-					.getState()) {
+			switch (getBoard()[clickIndex[1]][clickIndex[0]].getState()) {
 			case BLACK:
 				return false;
 			case RED:
