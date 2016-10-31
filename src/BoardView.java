@@ -63,7 +63,7 @@ public class BoardView extends JFrame implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("x: " + e.getX() + " y: "+ e.getY()); 
+		controller.userClickedAtPoint(e.getX(), e.getY(), WINDOW_WIDTH, WINDOW_HEIGHT, DISC_SIZE);
 		repaint(); 		
 	}
 
