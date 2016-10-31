@@ -27,7 +27,19 @@ public class BoardView extends JFrame implements MouseListener {
 		int x=0, y=DISC_SIZE/2;
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
-				g.setColor(Color.WHITE);
+				switch (board[i][j].getState()) {
+				case EMPTY:
+					g.setColor(Color.WHITE);
+					break;
+				case RED:
+					g.setColor(Color.RED);
+					break;
+				case BLACK:
+					g.setColor(Color.BLACK);
+					break;
+				default:
+					break;
+				}
 				g.fillOval(x, y, DISC_SIZE, DISC_SIZE);
 //				System.out.print(board[i][j].getState().name() + " ");
 				x+=DISC_SIZE + 10;
