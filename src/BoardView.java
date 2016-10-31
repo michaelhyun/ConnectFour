@@ -3,44 +3,56 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class BoardView extends JFrame{
+public class BoardView extends JFrame implements MouseListener {
 	BoardController controller;
-	JFrame frame;
+	private int WINDOW_WIDTH, WINDOW_HEIGHT;
+	private final int DISC_SIZE = 50;
 	
-	public BoardView(BoardController controller){
+	public BoardView(BoardController controller) {
 		this.controller = controller;
 		controller.attachView(this);
-		displayView();
-	}
-	
-	private void displayView(){
-		frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setupBoard();
-        frame.pack();
-        frame.setVisible(true);	
-	}
-	
-	private void setupBoard(){
 		
+		WINDOW_WIDTH = (controller.getBoard()[0].length *DISC_SIZE) + (10*controller.getBoard()[0].length);
+		WINDOW_HEIGHT = (controller.getBoard().length * DISC_SIZE) + (10*controller.getBoard().length) + (DISC_SIZE/2);
 		
-		JPanel buttonPanel = new JPanel();
-        JPanel containerPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(controller.getBoardModel().getBoardHeight(),controller.getBoardModel().getBoardWidth()));
+		setBackground(Color.YELLOW);
+		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		setLocation(0, 0);
+		addMouseListener(this);
+		setVisible(true);
+	}
 
-        frame.getContentPane().add(containerPanel);
-		
-		DiscModel[][] board = controller.getBoard();	
-		
+	public void paint(Graphics g) {
+		DiscModel[][] board = controller.getBoard();
+		int x=0, y=DISC_SIZE/2;
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
-				System.out.print(board[i][j].getState().name() + " ");
-				buttonPanel.add(new JButton(board[i][j].getState().name()));
+				g.setColor(Color.WHITE);
+				g.fillOval(x, y, DISC_SIZE, DISC_SIZE);
+//				System.out.print(board[i][j].getState().name() + " ");
+				x+=DISC_SIZE + 10;
 			}
-			System.out.println();
-		}
-		
-		buttonPanel.setPreferredSize(new Dimension(300, 400));
-        containerPanel.add(buttonPanel);
+			x=0;
+			y+=DISC_SIZE + 10;
+//			System.out.println();
+		} 
 	}
+
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	public void mouseExited(MouseEvent e) {
+	}
+
+	public void mousePressed(MouseEvent e) {
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		System.out.println("x: " + e.getX() + " y: "+ e.getY()); 
+		repaint(); 		
+	}
+
 }

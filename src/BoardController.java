@@ -1,13 +1,15 @@
 public class BoardController {
 	BoardView view;
 	BoardModel boardModel;
+	public static enum PlayerTurn{Player1, Player2};
+//	PlayerTurn
 
 	public void attachView(BoardView view) {
 		this.view = view;
 	}
 
 	public BoardController(String player1Name, String player2Name,
-			int boardHeight, int BoardWidth, PlayerModel.Color player1Color) {
+			int boardHeight, int boardWidth, PlayerModel.Color player1Color) {
 		PlayerModel.Color player2Color = null;
 		
 		switch (player1Color) {
@@ -21,7 +23,7 @@ public class BoardController {
 			break;
 		}
 		
-		boardModel = new BoardModel(new DiscModel[BoardWidth][boardHeight],
+		boardModel = new BoardModel(new DiscModel[boardHeight][boardWidth],
 				new PlayerModel(player1Name, player1Color), new PlayerModel(
 						player2Name, player2Color));
 	}
