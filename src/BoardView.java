@@ -11,24 +11,28 @@ public class BoardView extends JFrame implements MouseListener {
 	BoardController controller;
 	private int WINDOW_WIDTH, WINDOW_HEIGHT;
 	private final int DISC_SIZE = 50;
-	
+
 	public BoardView(BoardController controller) {
 		this.controller = controller;
 		controller.attachView(this);
-		
-		WINDOW_WIDTH = (controller.getBoard()[0].length *DISC_SIZE) + (10*controller.getBoard()[0].length);
-		WINDOW_HEIGHT = (controller.getBoard().length * DISC_SIZE) + (10*controller.getBoard().length) + (DISC_SIZE/2);
-		
+
+		WINDOW_WIDTH = (controller.getBoard()[0].length * DISC_SIZE)
+				+ (10 * controller.getBoard()[0].length);
+		WINDOW_HEIGHT = (controller.getBoard().length * DISC_SIZE)
+				+ (10 * controller.getBoard().length) + (DISC_SIZE / 2);
+
 		setBackground(Color.YELLOW);
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		setTitle(controller.getBoardModel().getPlayer1().getName() + " vs "
+				+ controller.getBoardModel().getPlayer2().getName());
 		setLocation(0, 0);
 		addMouseListener(this);
-		setVisible(true);
+		setVisible(true);	
 	}
 
 	public void paint(Graphics g) {
 		DiscModel[][] board = controller.getBoard();
-		int x=0, y=DISC_SIZE/2;
+		int x = 0, y = DISC_SIZE / 2;
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
 				switch (board[i][j].getState()) {
@@ -45,13 +49,13 @@ public class BoardView extends JFrame implements MouseListener {
 					break;
 				}
 				g.fillOval(x, y, DISC_SIZE, DISC_SIZE);
-//				System.out.print(board[i][j].getState().name() + " ");
-				x+=DISC_SIZE + 10;
+				// System.out.print(board[i][j].getState().name() + " ");
+				x += DISC_SIZE + 10;
 			}
-			x=0;
-			y+=DISC_SIZE + 10;
-//			System.out.println();
-		} 
+			x = 0;
+			y += DISC_SIZE + 10;
+			// System.out.println();
+		}
 	}
 
 	public void mouseReleased(MouseEvent e) {
@@ -67,8 +71,9 @@ public class BoardView extends JFrame implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		controller.userClickedAtPoint(e.getX(), e.getY(), WINDOW_WIDTH, WINDOW_HEIGHT, DISC_SIZE);
-		repaint(); 		
+		controller.userClickedAtPoint(e.getX(), e.getY(), WINDOW_WIDTH,
+				WINDOW_HEIGHT, DISC_SIZE);
+		repaint();
 	}
 
 }

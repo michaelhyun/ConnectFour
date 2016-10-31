@@ -6,6 +6,7 @@
 public class PlayerModel {
 	public static enum Color{RED, BLACK, EMPTY};
 	private String name;
+
 	private Color discColor;
 	
 	public PlayerModel(String name, Color discColor){
@@ -15,5 +16,9 @@ public class PlayerModel {
 	
 	public Color getDiscColor() {
 		return discColor;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }
