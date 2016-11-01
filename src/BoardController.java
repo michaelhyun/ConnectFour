@@ -57,51 +57,58 @@ public class BoardController {
 			int windowHeight, int discSize) {
 		int[] clickIndex = getIndexOfClick(x, y, windowWidth, windowHeight,
 				discSize);
-		updateBoardModel(clickIndex);
-	}
-	
-	
-	/**
-	 * Responsible for updating the model with the respective click index
-	 * @param clickIndex the index of the click
-	 */
-	private void updateBoardModel(int[] clickIndex){
 		if (isValidClick(clickIndex)) {
+			updateBoardModel(clickIndex);
 			switch (turn) {
 			case Player1:
-				switch (boardModel.getPlayer1().getDiscColor()) {
-				case RED:
-					getBoard()[clickIndex[1]][clickIndex[0]]
-							.setState(DiscModel.State.RED);
-					break;
-				case BLACK:
-					getBoard()[clickIndex[1]][clickIndex[0]]
-							.setState(DiscModel.State.BLACK);
-					break;
-				default:
-					break;
-				}
-				boardModel.setBoard(getBoard(), this);
 				turn = PlayerTurn.Player2;
 				break;
 			case Player2:
-				switch (boardModel.getPlayer2().getDiscColor()) {
-				case RED:
-					getBoard()[clickIndex[1]][clickIndex[0]]
-							.setState(DiscModel.State.RED);
-					break;
-				case BLACK:
-					getBoard()[clickIndex[1]][clickIndex[0]]
-							.setState(DiscModel.State.BLACK);
-					break;
-				default:
-					break;
-				}
 				turn = PlayerTurn.Player1;
+			default:
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Responsible for updating the model with the respective click index
+	 * 
+	 * @param clickIndex
+	 *            the index of the click
+	 */
+	private void updateBoardModel(int[] clickIndex) {
+		switch (turn) {
+		case Player1:
+			switch (boardModel.getPlayer1().getDiscColor()) {
+			case RED:
+				getBoard()[clickIndex[0]][clickIndex[1]]
+						.setState(DiscModel.State.RED);
+				break;
+			case BLACK:
+				getBoard()[clickIndex[0]][clickIndex[1]]
+						.setState(DiscModel.State.BLACK);
 				break;
 			default:
 				break;
 			}
+			break;
+		case Player2:
+			switch (boardModel.getPlayer2().getDiscColor()) {
+			case RED:
+				getBoard()[clickIndex[0]][clickIndex[1]]
+						.setState(DiscModel.State.RED);
+				break;
+			case BLACK:
+				getBoard()[clickIndex[0]][clickIndex[1]]
+						.setState(DiscModel.State.BLACK);
+				break;
+			default:
+				break;
+			}
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -130,9 +137,9 @@ public class BoardController {
 			for (int j = ((discSize / 2) + (discSize / 2)); j < windowHeight; j += (discSize + 10)) {
 				if (Math.pow((x - i), 2) + Math.pow((y - j), 2) < Math.pow(
 						(discSize / 2), 2)) {
-					clickIndex[0] = clickIndexX;
-					clickIndex[1] = clickIndexY;
-					System.out.println(clickIndexX + ", " + clickIndexY);
+					clickIndex[0] = clickIndexY;
+					clickIndex[1] = clickIndexX;
+					System.out.println(clickIndexY + ", " + clickIndexX);
 					return clickIndex;
 				}
 				clickIndexY++;
@@ -151,21 +158,28 @@ public class BoardController {
 	 * @return the status of the click
 	 */
 	private boolean isValidClick(int[] clickIndex) {
+		// check if the clicked disc is empty
 		if (clickIndex != null) {
-			switch (getBoard()[clickIndex[1]][clickIndex[0]].getState()) {
+			switch (getBoard()[clickIndex[0]][clickIndex[1]].getState()) {
 			case BLACK:
 				return false;
 			case RED:
 				return false;
 			case EMPTY:
 				return true;
+//				break;
 			default:
 				return false;
 			}
-		} else {
-			return false;
 		}
+		// check if there is one disc below, or if the user has clicked at the
+		// bottom of the board
+//		if (getBoard()) {
+//			DiscModel[][] b = getBoard();
+//			return false;
+//		}
 
+		return false;
 	}
 
 	public DiscModel[][] getBoard() {
