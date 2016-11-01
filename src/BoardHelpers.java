@@ -13,7 +13,7 @@ public class BoardHelpers {
 
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[0].length - 1; j++) {
-				if (board[i][j].equals(board[i][j + 1]) && !board[i][j].getState().equals("EMPTY")) {
+				if (board[i][j].equals(board[i][j + 1]) && !board[i][j].getState().name().equals("EMPTY")) {
 					count++;
 				}
 				else{
@@ -40,7 +40,7 @@ public class BoardHelpers {
 
 		for (int j = 0; j < board[0].length; j++) {
 			for (int i = 0; i < board.length - 1; i++) {
-				if (board[i][j].equals(board[i + 1][j]) && !board[i][j].getState().equals("EMPTY")) {
+				if (board[i][j].equals(board[i + 1][j]) && !board[i][j].getState().name().equals("EMPTY")) {
 					count++;
 				}
 				else{
@@ -76,7 +76,7 @@ public class BoardHelpers {
 				for (int x = i, y = j; x < board[0].length-1 && y < board.length-1; x++, y++)
 				{
 					DiscModel disc = board[x][y];
-					if (disc.equals(board[x+1][y+1]) && !board[i][j].getState().equals("EMPTY"))
+					if (disc.equals(board[x+1][y+1]) && !board[x][y].getState().name().equals("EMPTY"))
 						count++;
 					else
 						count = 1;
@@ -96,7 +96,7 @@ public class BoardHelpers {
 				for (int x = i, y = j; x > 0  && y < board.length-1 ; x--, y++) 
 				{
 					DiscModel disc = board[x][y];
-					if (disc.equals(board[x-1][y+1]) && !board[i][j].getState().equals("EMPTY"))
+					if (disc.equals(board[x-1][y+1]) && !board[x][y].getState().name().equals("EMPTY"))
 						count++;
 					else
 						count = 1;
