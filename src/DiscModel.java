@@ -19,7 +19,16 @@ public class DiscModel {
 		this.state = state;
 	}
 
-	
+	@Override
+	public boolean equals(Object other){
+		DiscModel disc = (DiscModel)other;
+		if(this.state == disc.getState()){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	
 
 }
