@@ -158,7 +158,6 @@ public class BoardController {
 	 * @return the status of the click
 	 */
 	private boolean isValidClick(int[] clickIndex) {
-//		boolean valid = false;
 		if (clickIndex != null) {
 			// check if the clicked disc is empty
 			switch (getBoard()[clickIndex[0]][clickIndex[1]].getState()) {
