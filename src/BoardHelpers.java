@@ -56,6 +56,8 @@ public class BoardHelpers {
 		return false;
 	}
 
+	
+	
 	private static boolean checkDiagonal(DiscModel[][] board, int length) {
 
 		// check if diagonal length is valid (smaller of the two: length or
@@ -91,7 +93,7 @@ public class BoardHelpers {
 		count = 1;
 		for (int i = board[0].length-1; i > 0; i--) {
 			for (int j = 0; j < board.length; j++) {
-				for (int x = i, y = j; x > 0  && y < board.length-1 ; x--, y++) //HERE
+				for (int x = i, y = j; x > 0  && y < board.length-1 ; x--, y++) 
 				{
 					DiscModel disc = board[x][y];
 					if (disc.equals(board[x-1][y+1]))

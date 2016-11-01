@@ -59,6 +59,7 @@ public class BoardController {
 				discSize);
 		if (isValidClick(clickIndex)) {
 			updateBoardModel(clickIndex);
+			//if checkWin, create a view that says who won
 			switch (turn) {
 			case Player1:
 				turn = PlayerTurn.Player2;
