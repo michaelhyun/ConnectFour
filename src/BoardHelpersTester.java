@@ -12,7 +12,7 @@ public class BoardHelpersTester {
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY),
 				new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY) },
 
-				{ new DiscModel(DiscModel.State.BLACK), new DiscModel(DiscModel.State.RED),
+				{ new DiscModel(DiscModel.State.RED), new DiscModel(DiscModel.State.RED),
 						new DiscModel(DiscModel.State.RED), new DiscModel(DiscModel.State.RED) },
 				{ new DiscModel(DiscModel.State.BLACK), new DiscModel(DiscModel.State.RED),
 						new DiscModel(DiscModel.State.RED), new DiscModel(DiscModel.State.RED) },
@@ -117,6 +117,29 @@ public class BoardHelpersTester {
 						new DiscModel(DiscModel.State.RED), new DiscModel(DiscModel.State.RED) },
 				{ new DiscModel(DiscModel.State.BLACK), new DiscModel(DiscModel.State.RED),
 						new DiscModel(DiscModel.State.RED), new DiscModel(DiscModel.State.EMPTY) } };
+		
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				System.out.print(board[i][j].getState().name() + " ");;
+			}
+			System.out.println(" ");
+		}
+		
+		assertTrue(BoardHelpers.checkWin(board, 3));
+	}
+	@Test
+	public void test6() {
+		//Vertical
+		
+		DiscModel[][] board = { { new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY),
+				new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY) },
+
+				{ new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY),
+						new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY) },
+				{ new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY),
+							new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY) },
+				{ new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY),
+								new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY)} };
 		
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
