@@ -40,7 +40,7 @@ public class BoardController {
 	}
 
 	/**
-	 * Responsible for notifying the Board Controller that a point was clicked and updating the model
+	 * Responsible for notifying the Board Controller that a point was clicked
 	 * 
 	 * @param x
 	 *            x-coordinate of user click
@@ -57,6 +57,15 @@ public class BoardController {
 			int windowHeight, int discSize) {
 		int[] clickIndex = getIndexOfClick(x, y, windowWidth, windowHeight,
 				discSize);
+		updateBoardModel(clickIndex);
+	}
+	
+	
+	/**
+	 * Responsible for updating the model with the respective click index
+	 * @param clickIndex the index of the click
+	 */
+	private void updateBoardModel(int[] clickIndex){
 		if (isValidClick(clickIndex)) {
 			switch (turn) {
 			case Player1:
@@ -94,7 +103,6 @@ public class BoardController {
 				break;
 			}
 		}
-
 	}
 
 	/**
