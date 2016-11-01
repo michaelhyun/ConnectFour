@@ -68,32 +68,33 @@ public class BoardHelpers {
 
 		 int count = 1;
 
-//		// Top Left to Bottom Right
-//		for (int i = 0; i < board[0].length; i++) {
-//			for (int j = 0; j < board.length; j++) {
-//				for (int x = i, y = j; x < board[0].length-1 && y < board.length-1; x++, y++)
-//				{
-//					DiscModel disc = board[x][y];
-//					if (disc.equals(board[x+1][y+1]))
-//						count++;
-//					else
-//						count = 1;
-//					if (count == length)
-//						return true;
-//				}
-//				count = 1;
-//			}
-//			count = 1;
-//		}
-		
-		count = 1;
-		//Top Right to Bottom Left
-		for (int i = board[0].length; i > 0; i--) {
+		// Top Left to Bottom Right
+		for (int i = 0; i < board[0].length; i++) {
 			for (int j = 0; j < board.length; j++) {
-				for (int x = i, y = j; x > 1  && y > 1; x--, y--)
+				for (int x = i, y = j; x < board[0].length-1 && y < board.length-1; x++, y++)
 				{
 					DiscModel disc = board[x][y];
-					if (disc.equals(board[x-1][y-1]))
+					if (disc.equals(board[x+1][y+1]))
+						count++;
+					else
+						count = 1;
+					if (count == length)
+						return true;
+				}
+				count = 1;
+			}
+			count = 1;
+		}
+		
+		
+		//Top Right to Bottom Left
+		count = 1;
+		for (int i = board[0].length-1; i > 0; i--) {
+			for (int j = 0; j < board.length; j++) {
+				for (int x = i, y = j; x > 0  && y < board.length-1 ; x--, y++) //HERE
+				{
+					DiscModel disc = board[x][y];
+					if (disc.equals(board[x-1][y+1]))
 						count++;
 					else
 						count = 1;
