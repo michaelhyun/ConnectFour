@@ -57,39 +57,37 @@ public class BoardController {
 			int windowHeight, int discSize) {
 		int[] clickIndex = getIndexOfClick(x, y, windowWidth, windowHeight,
 				discSize);
-		DiscModel[][] board = getBoard();
 		if (isValidClick(clickIndex)) {
 			switch (turn) {
 			case Player1:
 				switch (boardModel.getPlayer1().getDiscColor()) {
 				case RED:
-					board[clickIndex[1]][clickIndex[0]]
+					getBoard()[clickIndex[1]][clickIndex[0]]
 							.setState(DiscModel.State.RED);
 					break;
 				case BLACK:
-					board[clickIndex[1]][clickIndex[0]]
+					getBoard()[clickIndex[1]][clickIndex[0]]
 							.setState(DiscModel.State.BLACK);
 					break;
 				default:
 					break;
 				}
-				boardModel.setBoard(board, this);
+				boardModel.setBoard(getBoard(), this);
 				turn = PlayerTurn.Player2;
 				break;
 			case Player2:
 				switch (boardModel.getPlayer2().getDiscColor()) {
 				case RED:
-					board[clickIndex[1]][clickIndex[0]]
+					getBoard()[clickIndex[1]][clickIndex[0]]
 							.setState(DiscModel.State.RED);
 					break;
 				case BLACK:
-					board[clickIndex[1]][clickIndex[0]]
+					getBoard()[clickIndex[1]][clickIndex[0]]
 							.setState(DiscModel.State.BLACK);
 					break;
 				default:
 					break;
 				}
-				boardModel.setBoard(board, this);
 				turn = PlayerTurn.Player1;
 				break;
 			default:
