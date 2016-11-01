@@ -57,6 +57,10 @@ public class BoardView extends JFrame implements MouseListener {
 			// System.out.println();
 		}
 	}
+	
+	public void displayGameWinPopup(String playerName){
+		JOptionPane.showInputDialog("Player " + playerName + " has won!");
+	}
 
 	public void mouseReleased(MouseEvent e) {
 	}

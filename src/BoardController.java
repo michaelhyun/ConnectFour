@@ -59,7 +59,17 @@ public class BoardController {
 				discSize);
 		if (isValidClick(clickIndex)) {
 			updateBoardModel(clickIndex);
-			//if checkWin, create a view that says who won
+			if (BoardHelpers.checkWin(getBoard(), 4)) {
+				switch (turn) {
+				case Player1:
+					view.displayGameWinPopup(boardModel.getPlayer1().getName());
+					break;
+				case Player2:
+					view.displayGameWinPopup(boardModel.getPlayer2().getName());
+				}
+				
+			}
+			
 			switch (turn) {
 			case Player1:
 				turn = PlayerTurn.Player2;
