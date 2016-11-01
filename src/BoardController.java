@@ -158,9 +158,8 @@ public class BoardController {
 	 * @return the status of the click
 	 */
 	private boolean isValidClick(int[] clickIndex) {
-		boolean valid = false;
+//		boolean valid = false;
 		if (clickIndex != null) {
-
 			// check if the clicked disc is empty
 			switch (getBoard()[clickIndex[0]][clickIndex[1]].getState()) {
 			case BLACK:
@@ -168,7 +167,6 @@ public class BoardController {
 			case RED:
 				return false;
 			case EMPTY:
-				valid = true;
 				// check if click is at the bottom of the board
 				if (getBoard().length - 1 == clickIndex[0]) {
 					return true;
@@ -176,19 +174,16 @@ public class BoardController {
 				// check if there is one disc below
 				switch (getBoard()[clickIndex[0] + 1][clickIndex[1]].getState()) {
 				case BLACK:
-					valid = true;
-					break;
+					return true;
 				case RED:
-					valid = true;
-					break;
+					return true;
 				case EMPTY:
-					valid = false;
-					break;
+					return false;
 				}
 			}
 
 		}
-		return valid;
+		return false;
 	}
 
 	public DiscModel[][] getBoard() {
