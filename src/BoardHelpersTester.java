@@ -148,7 +148,7 @@ public class BoardHelpersTester {
 			System.out.println(" ");
 		}
 		
-		assertTrue(BoardHelpers.checkWin(board, 3));
+		assertFalse(BoardHelpers.checkWin(board, 3));
 	}
 
 }
