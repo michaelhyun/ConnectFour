@@ -69,19 +69,27 @@ public class BoardHelpers {
 		}
 
 		 int count = 1;
-
+		 		 
 		// Top Left to Bottom Right
-		for (int i = 0; i < board[0].length; i++) {
-			for (int j = 0; j < board.length; j++) {
-				for (int x = i, y = j; x < board[0].length-1 && y < board.length-1; x++, y++)
-				{
-					DiscModel disc = board[x][y];
-					if (disc.equals(board[x+1][y+1]) && !board[x][y].getState().name().equals("EMPTY"))
-						count++;
-					else
-						count = 1;
-					if (count == length)
+		for (int i = 0; i < board[0].length-1; i++) {
+			for (int j = 0; j < board.length-1; j++) {
+				for (int x = i, y = j; x < board[0].length && y < board.length; x++, y++){
+					
+					DiscModel disc = board[y][x];
+					try{
+						if (disc.equals(board[y+1][x+1]) && !board[y][x].getState().name().equals("EMPTY")){
+							count++;
+						}
+						else{
+							count = 1;
+						}
+					}
+					catch (Exception e){
+						break;
+					}
+					if (count == length){
 						return true;
+					}
 				}
 				count = 1;
 			}
@@ -92,14 +100,22 @@ public class BoardHelpers {
 		//Top Right to Bottom Left
 		count = 1;
 		for (int i = board[0].length-1; i > 0; i--) {
-			for (int j = 0; j < board.length; j++) {
-				for (int x = i, y = j; x > 0  && y < board.length-1 ; x--, y++) 
+			for (int j = 0; j < board.length-1; j++) {
+				for (int x = i, y = j; x > 0  && y < board.length-1; x--, y++) 
 				{
-					DiscModel disc = board[x][y];
-					if (disc.equals(board[x-1][y+1]) && !board[x][y].getState().name().equals("EMPTY"))
-						count++;
-					else
-						count = 1;
+					DiscModel disc = board[y][x];
+					try{
+						if (disc.equals(board[y + 1][x - 1]) && !board[y][x].getState().name().equals("EMPTY")){
+							count++;
+						}
+						else{
+							count = 1;
+						}
+					}
+					catch (Exception e){
+						break;
+					}
+					
 					if (count == length)
 						return true;
 				}
