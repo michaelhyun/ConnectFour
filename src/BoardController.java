@@ -5,6 +5,7 @@
 public class BoardController {
 	BoardView view;
 	BoardModel boardModel;
+	private boolean won;
 
 	public static enum PlayerTurn {
 		Player1, Player2
@@ -19,7 +20,8 @@ public class BoardController {
 	}
 
 	public BoardController(String player1Name, String player2Name,
-			int boardHeight, int boardWidth, PlayerModel.Color player1Color, int sequenceLength) {
+			int boardHeight, int boardWidth, PlayerModel.Color player1Color,
+			int sequenceLength) {
 		PlayerModel.Color player2Color = null;
 
 		switch (player1Color) {
@@ -35,8 +37,9 @@ public class BoardController {
 
 		boardModel = new BoardModel(new DiscModel[boardHeight][boardWidth],
 				new PlayerModel(player1Name, player1Color), new PlayerModel(
-						player2Name, player2Color),sequenceLength);
+						player2Name, player2Color), sequenceLength);
 		turn = PlayerTurn.Player1;
+		won = false;
 	}
 
 	/**
@@ -55,30 +58,34 @@ public class BoardController {
 	 */
 	public void userClickedAtPoint(int x, int y, int windowWidth,
 			int windowHeight, int discSize) {
-		int[] clickIndex = getIndexOfClick(x, y, windowWidth, windowHeight,
-				discSize);
-		if (isValidClick(clickIndex)) {
-			updateBoardModel(clickIndex);
-			view.repaint();
-			if (BoardHelpers.checkWin(getBoard(), 4)) {
+		if (!won) {
+			int[] clickIndex = getIndexOfClick(x, y, windowWidth, windowHeight,
+					discSize);
+			if (isValidClick(clickIndex)) {
+				updateBoardModel(clickIndex);
+				view.repaint();
+				if (BoardHelpers.checkWin(getBoard(), 4)) {
+					won = true;
+					switch (turn) {
+					case Player1:
+						view.displayGameWinPopup(boardModel.getPlayer1()
+								.getName());
+						break;
+					case Player2:
+						view.displayGameWinPopup(boardModel.getPlayer2()
+								.getName());
+					}
+				}
+
 				switch (turn) {
 				case Player1:
-					view.displayGameWinPopup(boardModel.getPlayer1().getName());
+					turn = PlayerTurn.Player2;
 					break;
 				case Player2:
-					view.displayGameWinPopup(boardModel.getPlayer2().getName());
+					turn = PlayerTurn.Player1;
+				default:
+					break;
 				}
-				
-			}
-			
-			switch (turn) {
-			case Player1:
-				turn = PlayerTurn.Player2;
-				break;
-			case Player2:
-				turn = PlayerTurn.Player1;
-			default:
-				break;
 			}
 		}
 	}
