@@ -5,7 +5,7 @@ import org.junit.Test;
 public class BoardHelpersTester {
 
 	@Test
-	public void test() throws InvalidLengthException {
+	public void testHorizontal() throws InvalidLengthException {
 		//Horizontal
 		
 		
@@ -31,7 +31,7 @@ public class BoardHelpersTester {
 	
 	
 	@Test
-	public void test2() throws InvalidLengthException {
+	public void testDiagonal() throws InvalidLengthException {
 		
 		//Diagonal Top left to Bottom Right
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.BLACK), new DiscModel(DiscModel.State.EMPTY),
@@ -56,7 +56,7 @@ public class BoardHelpersTester {
 		
 	
 	@Test
-	public void test3() throws InvalidLengthException {
+	public void testDiagonal2() throws InvalidLengthException {
 		//Diagonal Right Top to Bottom Left
 		
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.BLACK), new DiscModel(DiscModel.State.EMPTY),
@@ -81,7 +81,7 @@ public class BoardHelpersTester {
 	
 	
 	@Test
-	public void test4() throws InvalidLengthException {
+	public void testVertical() throws InvalidLengthException {
 		//Vertical
 		
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.BLACK), new DiscModel(DiscModel.State.EMPTY),
@@ -105,8 +105,8 @@ public class BoardHelpersTester {
 	}
 	
 	@Test
-	public void test5() throws InvalidLengthException {
-		//Vertical
+	public void testConnect3() throws InvalidLengthException {
+		//3 in row
 		
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.RED), new DiscModel(DiscModel.State.EMPTY),
 				new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY) },
@@ -128,9 +128,8 @@ public class BoardHelpersTester {
 		assertTrue(BoardHelpers.checkWin(board, 3));
 	}
 	@Test
-	public void test6() throws InvalidLengthException {
-		//Vertical
-		
+	public void testEmpty() throws InvalidLengthException {
+		//Empty		
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY),
 				new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY) },
 
@@ -154,8 +153,8 @@ public class BoardHelpersTester {
 	
 	
 	@Test
-	public void test7() throws InvalidLengthException {
-		//Vertical
+	public void testFalse() throws InvalidLengthException {
+		//None
 		
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY),
 				new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.RED) },
