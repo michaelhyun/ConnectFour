@@ -63,6 +63,7 @@ public class BoardController {
 					discSize);
 			if (isValidClick(clickIndex)) {
 				updateBoardModel(clickIndex);
+				view.validate();
 				view.repaint();
 				if (BoardHelpers.checkWin(getBoard(), 4)) {
 					won = true;
