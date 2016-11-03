@@ -19,7 +19,7 @@ public class BoardController {
 	}
 
 	public BoardController(String player1Name, String player2Name,
-			int boardHeight, int boardWidth, PlayerModel.Color player1Color) {
+			int boardHeight, int boardWidth, PlayerModel.Color player1Color, int sequenceLength) {
 		PlayerModel.Color player2Color = null;
 
 		switch (player1Color) {
@@ -35,7 +35,7 @@ public class BoardController {
 
 		boardModel = new BoardModel(new DiscModel[boardHeight][boardWidth],
 				new PlayerModel(player1Name, player1Color), new PlayerModel(
-						player2Name, player2Color));
+						player2Name, player2Color),sequenceLength);
 		turn = PlayerTurn.Player1;
 	}
 

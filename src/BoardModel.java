@@ -7,14 +7,16 @@ public class BoardModel {
 	private PlayerModel player1;
 	private PlayerModel player2;
 	private int boardWidth, boardHeight;
+	private int sequenceLength;
 
 	public BoardModel(DiscModel[][] board, PlayerModel player1,
-			PlayerModel player2) {
+			PlayerModel player2, int sequenceLength) {
 		this.board = board;
 		this.player1 = player1;
 		this.player2 = player2;
 		boardHeight = board.length;
 		boardWidth = board[0].length;
+		this.sequenceLength = sequenceLength;
 		populateEmptyBoard();
 	}
 
@@ -42,6 +44,10 @@ public class BoardModel {
 
 	public PlayerModel getPlayer2() {
 		return this.player2;
+	}
+	
+	public int getSequenceLength() {
+		return sequenceLength;
 	}
 
 	private void populateEmptyBoard() {
