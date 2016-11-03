@@ -19,10 +19,11 @@ public class BoardHelpers {
 				else{
 					count =1;
 				}
+				if (count >= length) {
+					return true;
+				}
 			}
-			if (count >= length) {
-				return true;
-			}
+
 			count = 1;
 		}
 		return false;
@@ -46,10 +47,9 @@ public class BoardHelpers {
 				else{
 					count =1;
 				}
-			}
-
-			if (count >= length) {
-				return true;
+				if (count >= length) {
+					return true;
+				}
 			}
 			count = 1;
 		}
