@@ -1,14 +1,13 @@
 
 public class BoardHelpers {
 
-	private static boolean checkHorizontal(DiscModel[][] board, int length) {
+	private static boolean checkHorizontal(DiscModel[][] board, int length) throws InvalidLengthException {
 		int count = 1;
 
 		// just check to see if length is valid
 		int horizontalMax = board[0].length;
 		if (length > horizontalMax) {
-			System.err.print("Length is invalid: Unable to make horizontal match");
-			return false;
+			throw new InvalidLengthException("Length is invalid: Unable to make horizontal match");
 		}
 
 		for (int i = 0; i < board.length; i++) {
@@ -29,14 +28,13 @@ public class BoardHelpers {
 		return false;
 	}
 
-	private static boolean checkVertical(DiscModel[][] board, int length) {
+	private static boolean checkVertical(DiscModel[][] board, int length) throws InvalidLengthException {
 		int count = 1;
 
 		// just check to see if length is valid
 		int verticalMax = board.length;
 		if (length > verticalMax) {
-			System.err.print("Length is invalid: Unable to make vertical match");
-			return false;
+			throw new InvalidLengthException("Length is invalid: Unable to make vertical match");
 		}
 
 		for (int j = 0; j < board[0].length; j++) {
@@ -58,14 +56,13 @@ public class BoardHelpers {
 
 	
 	
-	private static boolean checkDiagonal(DiscModel[][] board, int length) {
+	private static boolean checkDiagonal(DiscModel[][] board, int length) throws InvalidLengthException {
 
 		// check if diagonal length is valid (smaller of the two: length or
 		// width)
 		int diagonalMax = Math.min(board[0].length, board.length);
 		if (length > diagonalMax) {
-			System.err.println("Length is invalid: Unable to make diagonal match");
-			return false;
+			throw new InvalidLengthException("Length is invalid: Unable to make diagonal match");
 		}
 
 		 int count = 1;
@@ -127,7 +124,7 @@ public class BoardHelpers {
 		return false;
 	}
 
-	public static boolean checkWin(DiscModel[][] board, int length) {
+	public static boolean checkWin(DiscModel[][] board, int length) throws InvalidLengthException {
 
 		if (checkVertical(board, length)) {
 			return true;
@@ -141,4 +138,6 @@ public class BoardHelpers {
 			return false;
 		}
 	}
+	
+	
 }

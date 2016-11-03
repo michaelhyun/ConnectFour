@@ -5,7 +5,7 @@ import org.junit.Test;
 public class BoardHelpersTester {
 
 	@Test
-	public void test() {
+	public void test() throws InvalidLengthException {
 		//Horizontal
 		
 		
@@ -31,7 +31,7 @@ public class BoardHelpersTester {
 	
 	
 	@Test
-	public void test2() {
+	public void test2() throws InvalidLengthException {
 		
 		//Diagonal Top left to Bottom Right
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.BLACK), new DiscModel(DiscModel.State.EMPTY),
@@ -56,7 +56,7 @@ public class BoardHelpersTester {
 		
 	
 	@Test
-	public void test3() {
+	public void test3() throws InvalidLengthException {
 		//Diagonal Right Top to Bottom Left
 		
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.BLACK), new DiscModel(DiscModel.State.EMPTY),
@@ -81,7 +81,7 @@ public class BoardHelpersTester {
 	
 	
 	@Test
-	public void test4() {
+	public void test4() throws InvalidLengthException {
 		//Vertical
 		
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.BLACK), new DiscModel(DiscModel.State.EMPTY),
@@ -105,7 +105,7 @@ public class BoardHelpersTester {
 	}
 	
 	@Test
-	public void test5() {
+	public void test5() throws InvalidLengthException {
 		//Vertical
 		
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.RED), new DiscModel(DiscModel.State.EMPTY),
@@ -128,7 +128,7 @@ public class BoardHelpersTester {
 		assertTrue(BoardHelpers.checkWin(board, 3));
 	}
 	@Test
-	public void test6() {
+	public void test6() throws InvalidLengthException {
 		//Vertical
 		
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY),
@@ -154,7 +154,7 @@ public class BoardHelpersTester {
 	
 	
 	@Test
-	public void test7() {
+	public void test7() throws InvalidLengthException {
 		//Vertical
 		
 		DiscModel[][] board = { { new DiscModel(DiscModel.State.EMPTY), new DiscModel(DiscModel.State.EMPTY),

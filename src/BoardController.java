@@ -69,18 +69,22 @@ public class BoardController {
 				view.repaint();
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						if (BoardHelpers.checkWin(getBoard(),
-								boardModel.getSequenceLength())) {
-							won = true;
-							switch (turn) {
-							case Player1:
-								view.displayGameWinPopup(boardModel
-										.getPlayer1().getName());
-								break;
-							case Player2:
-								view.displayGameWinPopup(boardModel
-										.getPlayer2().getName());
+						try {
+							if (BoardHelpers.checkWin(getBoard(),
+									boardModel.getSequenceLength())) {
+								won = true;
+								switch (turn) {
+								case Player1:
+									view.displayGameWinPopup(boardModel
+											.getPlayer1().getName());
+									break;
+								case Player2:
+									view.displayGameWinPopup(boardModel
+											.getPlayer2().getName());
+								}
 							}
+						} catch (InvalidLengthException e) {
+							e.printStackTrace();
 						}
 
 						switch (turn) {
