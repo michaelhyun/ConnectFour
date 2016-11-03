@@ -1,3 +1,5 @@
+import javax.swing.SwingUtilities;
+
 /**
  * @author ravinsardal
  *
@@ -65,28 +67,34 @@ public class BoardController {
 				updateBoardModel(clickIndex);
 				view.revalidate();
 				view.repaint();
-				if (BoardHelpers.checkWin(getBoard(), boardModel.getSequenceLength())) {
-					won = true;
-					switch (turn) {
-					case Player1:
-						view.displayGameWinPopup(boardModel.getPlayer1()
-								.getName());
-						break;
-					case Player2:
-						view.displayGameWinPopup(boardModel.getPlayer2()
-								.getName());
-					}
-				}
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						if (BoardHelpers.checkWin(getBoard(),
+								boardModel.getSequenceLength())) {
+							won = true;
+							switch (turn) {
+							case Player1:
+								view.displayGameWinPopup(boardModel
+										.getPlayer1().getName());
+								break;
+							case Player2:
+								view.displayGameWinPopup(boardModel
+										.getPlayer2().getName());
+							}
+						}
 
-				switch (turn) {
-				case Player1:
-					turn = PlayerTurn.Player2;
-					break;
-				case Player2:
-					turn = PlayerTurn.Player1;
-				default:
-					break;
-				}
+						switch (turn) {
+						case Player1:
+							turn = PlayerTurn.Player2;
+							break;
+						case Player2:
+							turn = PlayerTurn.Player1;
+						default:
+							break;
+						}
+					}
+				});
+
 			}
 		}
 	}
