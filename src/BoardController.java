@@ -65,7 +65,7 @@ public class BoardController {
 				updateBoardModel(clickIndex);
 				view.validate();
 				view.repaint();
-				if (BoardHelpers.checkWin(getBoard(), 4)) {
+				if (BoardHelpers.checkWin(getBoard(), boardModel.getSequenceLength())) {
 					won = true;
 					switch (turn) {
 					case Player1:
