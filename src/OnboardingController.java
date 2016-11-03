@@ -1,5 +1,3 @@
-import javax.swing.JOptionPane;
-
 /**
  * @author ravinsardal
  *
@@ -18,7 +16,8 @@ public class OnboardingController {
 		int boardDimensions = Integer.parseInt(args[0]);
 		int sequenceLength = Integer.parseInt(args[1]);
 
-		BoardView gui = new BoardView(new BoardController(PLAYER_1_NAME,
-				PLAYER_2_NAME, boardDimensions, boardDimensions, PlayerModel.Color.RED,sequenceLength));
+		new BoardView(new BoardController(PLAYER_1_NAME, PLAYER_2_NAME,
+				boardDimensions, boardDimensions, PlayerModel.Color.RED,
+				sequenceLength));
 	}
 }

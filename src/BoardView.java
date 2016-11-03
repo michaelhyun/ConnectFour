@@ -7,6 +7,7 @@ import java.awt.event.*;
  * @author ravinsardal
  *
  */
+@SuppressWarnings("serial")
 public class BoardView extends JFrame implements MouseListener {
 	BoardController controller;
 	private int WINDOW_WIDTH, WINDOW_HEIGHT;
@@ -49,17 +50,16 @@ public class BoardView extends JFrame implements MouseListener {
 					break;
 				}
 				g.fillOval(x, y, DISC_SIZE, DISC_SIZE);
-				// System.out.print(board[i][j].getState().name() + " ");
 				x += DISC_SIZE + 10;
 			}
 			x = 0;
 			y += DISC_SIZE + 10;
-			// System.out.println();
 		}
 	}
 	
 	public void displayGameWinPopup(String playerName){
-		JOptionPane.showInputDialog("Player " + playerName + " has won!");
+		JOptionPane.showMessageDialog(this, playerName + " has won!");
+		System.out.println(playerName + " has won!");
 	}
 
 	public void mouseReleased(MouseEvent e) {

@@ -151,7 +151,6 @@ public class BoardController {
 						(discSize / 2), 2)) {
 					clickIndex[0] = clickIndexY;
 					clickIndex[1] = clickIndexX;
-					System.out.println(clickIndexY + ", " + clickIndexX);
 					return clickIndex;
 				}
 				clickIndexY++;
