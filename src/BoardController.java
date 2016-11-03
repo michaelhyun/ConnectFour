@@ -59,6 +59,7 @@ public class BoardController {
 				discSize);
 		if (isValidClick(clickIndex)) {
 			updateBoardModel(clickIndex);
+			view.repaint();
 			if (BoardHelpers.checkWin(getBoard(), 4)) {
 				switch (turn) {
 				case Player1:
